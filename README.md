@@ -1,4 +1,4 @@
-T## Folder Structure
+## Folder Structure
 
 After creation, your project should look like this:
 

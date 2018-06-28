@@ -10,7 +10,8 @@ class Blog extends Component {
         super(props);
         this.state = {
             posts: [],
-            selectedPostId: null
+            selectedPostId: null,
+            error: false
         }
     }
     
@@ -27,12 +28,19 @@ class Blog extends Component {
             }
           })
            this.setState({posts: updateNewValue});
+        })
+        .catch( error => {
+            this.setState({error: true});
         });
     }
     render () {
-        const posts = this.state.posts.map((post,index) => {
-          return <Post key={post.id} title={post.title} author={post.author} clicked={()=>this.postClicked(post.id)} />
-        })
+        
+        let posts = <p>Something went wrong</p>;
+        if(!this.state.error) {
+            posts = this.state.posts.map((post,index) => {
+              return <Post key={post.id} title={post.title} author={post.author} clicked={ ()=>this.postClicked(post.id)} />
+            });
+        }
         return (
             <div>
                 <section className="Posts">

@@ -9,14 +9,14 @@ class FullPost extends Component {
     }
     deleteHandler = ()=> {
       console.log('adasd');
-      axios.delete('https://jsonplaceholder.typicode.com/posts/'+ this.props.id).then( response => {
+      axios.delete('/posts/'+ this.props.id).then( response => {
         console.log(response);
       });
     }
     componentDidUpdate() {
       if(this.props.id) {
         if(!this.state.loadedPost ||(this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
-          axios.get('https://jsonplaceholder.typicode.com/posts/'+ this.props.id).then(response => {
+          axios.get('/posts/'+ this.props.id).then(response => {
             this.setState({loadedPost: response.data});
           });
         }

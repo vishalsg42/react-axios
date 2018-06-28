@@ -19,7 +19,7 @@ class Blog extends Component {
       this.setState({selectedPostId: id});
     }
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/posts').then(res=> {
+        axios.get('/posts').then(res=> {
           const updateValue = res.data.splice(0,4);
           const updateNewValue = updateValue.map(post => {
             return {
